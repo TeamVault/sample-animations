@@ -1,0 +1,161 @@
+<?xml version="1.0" standalone="no" ?>
+    <manifest identifier="ID-588DD0B7-EB29-48B6-853C-F7AF561183BB" version="1.0"
+  		xmlns="http://www.imsproject.org/xsd/imscp_rootv1p1p2"
+  		xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_rootv1p2"
+  		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    	xsi:schemaLocation="http://www.imsproject.org/xsd/imscp_rootv1p1p2 imscp_rootv1p1p2.xsd
+                        	http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd
+                        	http://www.adlnet.org/xsd/adlcp_rootv1p2 adlcp_rootv1p2.xsd" > 
+							
+      <metadata> 
+    <lom 	xmlns="http://www.imsglobal.org/xsd/imsmd_rootv1p2p1"
+  			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  			xsi:schemaLocation="http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd"> 
+      <general>
+	  	<identifier>ID-588DD0B7-EB29-48B6-853C-F7AF561183BB</identifier>
+        <title> 
+          <langstring xml:lang="en-US">Untitled</langstring>
+        </title>
+        <catalogentry> 
+          <catalog>Camtasia Studio 2 Video Course</catalog>
+          <entry> 
+            <langstring xml:lang="en-US">Untitled</langstring>
+          </entry>
+        </catalogentry>
+        <language>en</language>
+        <description> 
+          <langstring xml:lang="en-US"></langstring>
+        </description>
+        <keyword> 
+          <langstring xml:lang="en-US">Camtasia Studio 2 Video Course</langstring>
+          <langstring xml:lang="en-US"></langstring>
+        </keyword>
+        <aggregationlevel> 
+          <source> 
+            <langstring xml:lang="x-none">LOMv1.0</langstring>
+          </source>
+          <value> 
+            <langstring xml:lang="x-none">3</langstring>
+          </value>
+        </aggregationlevel>
+      </general>
+      <lifecycle> 
+        <version> 
+          <langstring xml:lang="x-none">1.0</langstring>
+        </version>
+        <status> 
+          <source> 
+            <langstring xml:lang="x-none">LOMv1.0</langstring>
+          </source>
+          <value> 
+            <langstring xml:lang="x-none">Final</langstring>
+          </value>
+        </status>
+        <contribute> 
+          <role> 
+            <source> 
+              <langstring xml:lang="x-none">LOMv1.0</langstring>
+            </source>
+            <value> 
+              <langstring xml:lang="x-none"></langstring>
+            </value>
+          </role>
+          <centity> 
+            <vcard>BEGIN:vCard ORG: END:vCard</vcard>
+          </centity>
+          <date> 
+            <datetime>2005-04-21</datetime>
+          </date>
+        </contribute>
+      </lifecycle>
+      <metametadata> 
+        <metadatascheme>ADL SCORM 1.2</metadatascheme>
+        <language>en</language>
+      </metametadata>
+      <technical> 
+        <format>text/html</format>
+        <location type="URI">.</location>
+		  <duration>
+           <datetime>0:05:05.88</datetime>
+    	  </duration>
+      </technical>
+      <educational> 
+        <learningresourcetype> 
+          <source> 
+            <langstring xml:lang="x-none">LOMv1.0</langstring>
+          </source>
+          <value> 
+            <langstring xml:lang="x-none">Exercise</langstring>
+          </value>
+        </learningresourcetype>
+		  <typicallearningtime>
+		  		<datetime>0:05:05.88</datetime>
+		  </typicallearningtime>
+      </educational>
+      <rights> 
+        <cost> 
+          <source> 
+            <langstring xml:lang="x-none">LOMv1.0</langstring>
+          </source>
+          <value> 
+            <langstring xml:lang="x-none">no</langstring>
+          </value>
+        </cost>
+        <copyrightandotherrestrictions> 
+          <source> 
+            <langstring xml:lang="x-none">LOMv1.0</langstring>
+          </source>
+          <value> 
+            <langstring xml:lang="x-none">no</langstring>
+          </value>
+        </copyrightandotherrestrictions>
+        <description> 
+          <langstring xml:lang="en-US">No Copy Rights</langstring>
+        </description>
+      </rights>
+      <classification> 
+        <purpose> 
+          <source> 
+            <langstring xml:lang="x-none">LOMv1.0</langstring>
+          </source>
+          <value> 
+            <langstring xml:lang="x-none">Idea</langstring>
+          </value>
+        </purpose>
+        <description> 
+          <langstring xml:lang="en-US"></langstring>
+        </description>
+        <keyword> 
+          <langstring xml:lang="en-US"></langstring>
+        </keyword>
+      </classification>
+    </lom>
+  </metadata>
+ 
+      <organizations default="TOC1"> 
+        <organization identifier="TOC1"> 
+          <title>Untitled</title>
+          <item identifier="I_SCO0" identifierref="SCO0">
+ 		<title>Untitled</title>
+ 		</item> </organization>
+      </organizations>
+      <resources> 
+<resource identifier="SCO0" type="webcontent" adlcp:scormtype="sco" href="paul m no limit.html">
+		<file href="paul m no limit.html"/>
+		<dependency identifierref="ALLRESOURCES" />
+</resource>
+
+        <resource identifier="ALLRESOURCES" type="webcontent" adlcp:scormtype="asset"> <file href="paul m no limit.html" />
+		<file href="paul m no limit_media/images/background_darker.gif" />
+		<file href="paul m no limit_media/images/bg_table_light.gif" />
+		<file href="paul m no limit_media/images/border_bottom.gif" />
+		<file href="paul m no limit_media/images/border_bottom_left.gif" />
+		<file href="paul m no limit_media/images/border_bottom_right.gif" />
+		<file href="paul m no limit_media/images/border_top.gif" />
+		<file href="paul m no limit_media/images/border_top_right.gif" />
+		<file href="paul m no limit_media/images/bottom.gif" />
+		<file href="paul m no limit_media/images/spacer.gif" />
+		<file href="paul m no limit_media/paul m no limit.mov" /> </resource>
+      </resources>
+    </manifest>
+  

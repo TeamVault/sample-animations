@@ -1,0 +1,447 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<!-- saved from url=(0025)http://www.techsmith.com/ -->
+<title>Created by Camtasia Studio 2</title>
+<style>
+a:link {font-size:small;text-decoration:none;padding-top:5px;padding-bottom:5px;padding-left:2px;padding-right:5px;color:black;display:block;margin-top:0px;margin-bottom:0px;}
+a:visited {font-size:small;text-decoration:none;padding-top:5px;padding-bottom:5px;padding-left:2px;padding-right:5px;display:block;margin-top:0px;margin-bottom:0px;}
+a:hover {
+	font-size:small;
+	text-decoration:none;
+	padding-top:4px;padding-bottom:4px;padding-left:2px;padding-right:5px;	
+	border-top:1px solid #666666;
+	border-bottom:1px solid #666666;
+	background-color:white;
+	margin-top:0px;margin-bottom:0px;
+}
+
+a.notdisplayed:link {
+      font-size: small;
+      text-decoration: underline;
+      padding: 3px; 
+      border: 0;     
+      display:inline
+}
+
+a.notdisplayed:visited{
+      font-size: small;
+      text-decoration: underline;
+      padding: 3px; 
+      border: 0;     
+      display:inline
+}
+
+
+a.notdisplayed:hover {
+      font-size: small;
+      text-decoration: underline;
+      padding: 3px;   
+      border: 0;
+      background-color: transparent;
+      display:inline
+}
+
+p{margin-top:-1px;margin-bottom:0px;vertical-align:middle;font-size:small;}
+.title{text-indent:6px;padding-bottom:3px;margin-top:-15px;vertical-align:middle;font-size:small;font-weight:bold;color:#444444;}
+
+BODY {
+   BORDER-TOP-WIDTH: 0px;
+   PADDING-RIGHT: 0px;
+   PADDING-LEFT: 0px;
+   BORDER-LEFT-WIDTH: 0px;
+   BORDER-BOTTOM-WIDTH: 0px;
+   PADDING-BOTTOM: 0px;
+   MARGIN: 0px;
+   PADDING-TOP: 0px;
+   BORDER-RIGHT-WIDTH: 0px;
+   vertical-align: top;
+}
+BODY {
+padding-top:2%;
+   PADDING-BOTTOM: 0px;
+   COLOR: #000000;
+   FONT-FAMILY: "Arial", san-serif;
+   BACKGROUND-COLOR: #cccccc;
+   background-repeat: repeat-x;
+   background-position: center top;
+   background-image: url(paul%20m%20no%20limit_media/images/background_darker.gif);
+}</style>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<script language=javascript type="text/javascript">
+function OnLoad()
+{
+   loadPage();
+   timerInit();
+}
+</script>
+<Script language=javascript type="text/javascript" >
+
+// Define exception/error codes
+var Error = 0;
+// local variable definitions
+var apiHandle = null; 
+var API = null; 
+var findAPITries = 0; 
+	
+		
+/*******************************************************************************
+**
+** Function findAPI(win)
+** Inputs:  win - a Window Object
+** Return:  If an API object is found, it's returned, otherwise null is returned
+**
+** Description:
+** This function looks for an object named API in parent and opener windows
+**
+*******************************************************************************/
+function findAPI(win)
+{
+   while ((win.API == null) && (win.parent != null) && (win.parent != win))
+   {
+      findAPITries++;
+      
+      // Note: 7 is an arbitrary number, but should be more than sufficient
+      if (findAPITries > 7) 
+      {
+         alert("Error finding API -- too deeply nested.");
+         return null;
+      }
+      win = win.parent;
+   }
+   return win.API;
+}
+
+
+/*******************************************************************************
+**
+** Function getAPI()
+** Inputs:  none
+** Return:  If an API object is found, it's returned, otherwise null is returned
+**
+** Description:
+** This function looks for an object named API, first in the current window's 
+** frame hierarchy and then, if necessary, in the current window's opener window
+** hierarchy (if there is an opener window).
+**
+*******************************************************************************/
+function getAPI()
+{
+   var theAPI = findAPI(window);
+   
+   if ((theAPI == null) && (window.opener != null) && (typeof(window.opener) != "undefined"))
+   {
+      theAPI = findAPI(window.opener);
+   }
+   if (theAPI == null)
+   {
+      //alert("Unable to find an API adapter");
+   }
+   return theAPI;
+}
+
+/******************************************************************************
+**
+** Function getAPIHandle()
+** Inputs:  None
+** Return:  value contained by APIHandle
+**
+** Description:
+** Returns the handle to API object if it was previously set,
+** otherwise it returns null
+**
+*******************************************************************************/
+function getAPIHandle()
+{
+   if (apiHandle == null)
+   {
+      apiHandle = getAPI();
+   }
+
+   return apiHandle;
+}
+
+
+/******************************************************************************************
+**
+** Function: LMSInitialize()
+** Inputs:	None
+** Return:	CMIBoolean true if the initialization was successful, or
+**			CMIBoolean false if the initialization failed.
+**
+** Description:
+** Initialize communication with LMS by calling the LMSInitialize 
+** function which will be implemented by the LMS, if the LMS is 
+** compliant with the SCORM.
+**
+******************************************************************************************/
+function LMSInitialize() 
+{
+   var api = getAPIHandle();
+   if (api == null)
+   {
+      Error = 1; 
+      return false;
+   }
+
+   // call the LMSInitialize function that should be implemented by the API
+   var initResult = api.LMSInitialize("");
+	
+   return initResult;
+   
+} 
+
+/******************************************************************************************
+**
+** Function LMSFinish()
+** Inputs:	None
+** Return:	None
+**
+** Description:
+** Close communication with LMS by calling the LMSFinish 
+** function which will be implemented by the LMS, if the LMS is 
+** compliant with the SCORM.
+**
+******************************************************************************************/
+function LMSFinish()
+{
+   var api = getAPIHandle();
+   if (api == null)
+   {
+      Error = 2;
+   }
+   else
+   {
+      // call the LMSInitialize function that should be implemented by the API
+      api.LMSFinish("");
+   }   
+
+   return;
+   
+} 
+
+/******************************************************************************************
+**
+** Function LMSSetValue(name, value) 
+** Inputs:	name - string representing the cmi data model defined category or element
+**			value - the value that the named element or category will be assigned
+** Return:	None
+**
+** Description:
+** Wraps the call to the LMS LMSSetValue method
+**
+******************************************************************************************/
+function LMSSetValue(name, value) 
+{
+   var api = getAPIHandle();
+   if (api == null)
+   {
+      Error = 3;
+   }
+   else
+   {
+      api.LMSSetValue(name, value);
+   }   
+
+   return;
+}
+
+/******************************************************************************************
+**
+** Function LMSCommit() 
+** Inputs:	None
+** Return:	None
+**
+** Description:
+** Call the LMSCommit function which will be implemented by the LMS, 
+** if the LMS is compliant with the SCORM.
+**
+******************************************************************************************/
+function LMSCommit()
+{
+   var api = getAPIHandle();
+   if (api == null)
+   {
+      Error = 4;
+   }
+   else
+   {
+      // call the LMSInitialize function that should be implemented by the API
+      api.LMSCommit("");
+   }   
+
+   return;
+   
+} 
+
+/******************************************************************************************
+**
+** Function loadPage() 
+** Inputs:	None
+** Return:	None
+**
+** Description:
+** Calls all of the necessary API functions to give the student credit for viewing this course
+**	Displays an error message if the API can not be found or if one of the functions fails.
+**
+******************************************************************************************/
+function loadPage()
+{
+   LMSInitialize();
+	LMSSetValue("cmi.core.lesson_status", "completed");
+	LMSCommit();
+	LMSFinish();
+	
+	// An error occurred, and the LMS could not be found
+	if( Error != 0 )
+	{
+		alert( "Unable to locate the LMS" );
+	}
+}
+
+
+</Script>
+<Script language=javascript type="text/javascript" >
+function SeekTime( Time )
+{   
+   document.QuickTimePlayer.SetTime( Time * 600 );
+   
+   document.QuickTimePlayer.Play();
+}
+</Script>
+
+<script language=javascript type="text/javascript">
+
+function ScrollToIndex( DivID, destIndex ) 
+{
+   var nDestYCoord = destIndex.offsetTop; 
+   var thisNode    = destIndex; 
+   
+   while ( thisNode.offsetParent && ( thisNode.offsetParent !=  document.body) ) 
+   { 
+      thisNode     = thisNode.offsetParent; 
+      nDestYCoord += thisNode.offsetTop; 
+   }
+
+   nCurWindowYPos = GetCurrentScrollYPos( DivID.id );
+
+   //Only scroll if it's needed..
+   if( destIndex.offsetTop + destIndex.offsetHeight > DivID.clientHeight )
+   {      
+      nDestYCoord -= DivID.clientHeight;
+      
+      if( nDestYCoord > DivID.scrollTop )
+      {
+         DivID.scrollTop = nDestYCoord;
+      }
+   }
+}
+
+function GetCurrentScrollYPos( DivID ) 
+{ 
+   var aDivs = document.body.getElementsByTagName("DIV");
+
+   for ( var i=0; i < aDivs.length; i++ ) 
+   { 
+      var Div = aDivs[i]; 
+
+      if ( Div.id == DivID ) 
+      { 
+         return Div.scrollTop
+      }
+   }
+
+   return 0;
+}
+
+</script>
+
+<script language=javascript type="text/javascript">
+
+function timerInit() 
+{
+   //Sets the timer to check every .1 second
+   window.setInterval("timer()", 100);
+}
+
+function timer() 
+{  
+   var StartTime = QuickTimePlayer.GetTime();
+   var destIndex = null;
+   
+   var curTime = QuickTimePlayer.GetTime() / 600;
+      if( curTime >= 0.000000 && curTime < 305.875015 )
+      {
+         document.getElementById('Index0').style.backgroundColor = '#ffffcc';
+         destIndex = document.getElementById('Index0');
+      }
+      else
+      {
+         document.getElementById('Index0').style.backgroundColor = '';
+      }
+
+   
+   var EndTime = QuickTimePlayer.GetTime();
+   
+   if( destIndex != null && StartTime != EndTime )
+   {
+      ScrollToIndex( document.getElementById('IndexLinksDiv'), destIndex );
+   }
+}
+</script>   
+</head>
+<body onload="OnLoad()"> 
+<table border="0" align="center" cellpadding="0" cellspacing="0">
+<tr><td valign="top">
+<table border="0" cellspacing="0" cellpadding="0" style="width:185px;">
+<tr>
+<td style="border-bottom:2px #669933 solid;"><img src="paul%20m%20no%20limit_media/images/border_top.gif" /><div id="IndexLinksDiv" style="overflow:auto;height:684px;margin-top:-3px;vertical-align:top;background-image:url(paul%20m%20no%20limit_media/images/bg_table_light.gif);border-left:2px solid #669933;border-top:2px solid #669933;padding:0px;">
+  <br /><p class="title">
+    
+            </p>
+    <p class="border" id="Index0"><a href="javascript:SeekTime(0.000000);">1. Introduction</a></p>
+
+      </div></td>
+    </tr>
+    <tr>
+      <td style="width:185px;height:15px;border-top:2px #669933 solid;"><img src="paul%20m%20no%20limit_media/images/border_bottom.gif" style="margin-top:-3px;"/></td>
+    </tr>
+  </table></td>
+  <td valign="top">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td style="border-top:2px solid #669933;background-color:#cccccc;"><img src="paul%20m%20no%20limit_media/images/spacer.gif" width="20" height="15" /></td>
+      <td style="border-top:2px solid #669933;background-color:#cccccc;"><img src="paul%20m%20no%20limit_media/images/spacer.gif" width="15" height="15" /></td>
+      <td style="background-image:url(paul%20m%20no%20limit_media/images/border_top_right.gif);"><img src="paul%20m%20no%20limit_media/images/spacer.gif" width="15" height="15" /></td>
+    </tr>
+    <tr>
+      <td style="border-left:2px solid #669933;background-color:#cccccc;">&nbsp;</td>
+      <td style="background-color:#cccccc;"><OBJECT id  ="QuickTimePlayer"    
+   width    ="1024" 
+   height   ="784" 
+   classid  ="CLSID:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" 
+   codebase ="http://www.apple.com/qtactivex/qtplugin.cab" VIEWASTEXT>
+   <PARAM name="SRC"          value="paul%20m%20no%20limit_media/paul%20m%20no%20limit.mov">
+   <PARAM name="autoplay"     value="true">
+   <PARAM name="loop"         value="false">
+   <PARAM name="controller"   VALUE="true">
+   
+   <EMBED name             ="EmbedQuickTimePlayer"
+          pluginspage      ="http://www.apple.com/quicktime/download/"
+          width            ="1024"
+          height           ="784"
+          src              ="paul%20m%20no%20limit_media/paul%20m%20no%20limit.mov"
+          autoplay         ="true"
+          loop             ="false"
+          controller       ="true"
+          enablejavascript ="true">
+   </EMBED> 
+</OBJECT> <br> <p style="text-align: center; font-size:small" >Best viewed with QuickTime 6 or later. <a class="notdisplayed" href="http://www.techsmith.com/redirect.asp?target=quicktime&lang=enu">Download the latest version</a>.</p>
+</td>
+      <td style="border-right:2px solid #669933;background-color:#cccccc;"><img src="paul%20m%20no%20limit_media/images/spacer.gif" /></td>
+    </tr>
+    <tr>
+      <td><img src="paul%20m%20no%20limit_media/images/border_bottom_left.gif" width="20" height="20" /></td><td><img src="paul%20m%20no%20limit_media/images/bottom.gif" width="100%" height="20"/></td>
+      <td><img src="paul%20m%20no%20limit_media/images/border_bottom_right.gif" width="20" height="20" /></td></tr></table></td></tr></table>
+</body></html>
